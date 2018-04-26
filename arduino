@@ -1,0 +1,96 @@
+2 placas arduino uno conectadas:
+codigo de la placa que manda:
+int p1, p2, d1=1, p3, d2=1, d3=0, d4=1;
+
+
+void setup()
+{
+  Serial.begin(9699);
+  
+  pinMode(2, OUTPUT);
+  pinMode(3, OUTPUT);
+  pinMode(4, OUTPUT);
+  pinMode(5, OUTPUT);
+  pinMode(6, OUTPUT);
+  pinMode(7, OUTPUT);
+  pinMode(8, OUTPUT);
+  
+  
+}
+
+void loop()
+{
+  //Serial.println("Hola");
+  int grupoUno =d1+d2+d4;
+  
+  if(grupoUno%2==0){
+  	p1=0;
+  }else{
+    p1=1;
+  	}
+  int grupoDos =d1+d3+d4;
+  if(grupoDos%2==0){
+  	p2=0;
+  }else{
+    p2=1;
+  	}
+  
+  int grupoTres =d2+d3+d4;
+  if(grupoTres%2==0){
+  	p3=0;
+  }else{
+    p3=1;
+  	}
+  
+  /**Serial.print(p1);
+  Serial.print(p2);
+  Serial.print(d1);
+  Serial.print(p3);
+  Serial.print(d2);
+  Serial.print(d3);
+  Serial.println(d4);**/
+  
+  
+  digitalWrite(2,p1);
+  digitalWrite(3,p2);
+  digitalWrite(4,d1);
+  digitalWrite(5,p3);
+  digitalWrite(6,d2);
+  digitalWrite(7,d3);
+  digitalWrite(8,d4);
+}
+
+codigo de la que recibe:
+int p1, p2, d1, p3, d2, d3, d4;
+
+void setup()
+{
+  Serial.begin(9699);
+  
+  pinMode(2, INPUT);
+  pinMode(3, INPUT);
+  pinMode(4, INPUT);
+  pinMode(5, INPUT);
+  pinMode(6, INPUT);
+  pinMode(7, INPUT);
+  pinMode(8, INPUT);
+}
+
+void loop()
+{
+  p1= digitalRead(2);
+  p2= digitalRead(3);
+  d1= digitalRead(4);
+  p3= digitalRead(5);
+  d2= digitalRead(6);
+  d3= digitalRead(7);
+  d4= digitalRead(8);
+  
+  Serial.print(p1);
+  Serial.print(p2);
+  Serial.print(d1);
+  Serial.print(p3);
+  Serial.print(d2);
+  Serial.print(d3);
+  Serial.println(d4);
+}
